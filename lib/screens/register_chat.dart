@@ -16,20 +16,7 @@ class RegisterPage extends StatelessWidget {
   bool isLoad = false;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterCubit, RegisterState>(
-      listener: (context, state) {
-        if (state is RegisterLoad) {
-          isLoad = true;
-        } else if (state is RegisterSuccess) {
-          Navigator.pushNamed(context, ChatPage.id);
-          isLoad = false;
-        } else {
-          ShowSnackBar(context, "there is a problem");
-          isLoad = false;
-        }
-      },
-      builder: (context, state) {
-        return ModalProgressHUD(
+    return ModalProgressHUD(
           inAsyncCall: isLoad,
           child: Form(
             key: fromkey,
@@ -131,7 +118,6 @@ class RegisterPage extends StatelessWidget {
             ),
           ),
         );
-      },
-    );
+      }
+    
   }
-}

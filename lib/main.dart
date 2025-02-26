@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
      providers: [
-        BlocProvider(create: (context) => LoginCubit()),
+        // BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => ChatCubit()),
         // BlocProvider(create: (context) => AuthBloc()),

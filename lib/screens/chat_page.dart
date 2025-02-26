@@ -36,8 +36,6 @@ class ChatPage extends StatelessWidget {
             
               return ListView.builder(
                   itemCount: 3,
-                  reverse: true,
-                  controller: _scrollController,
                   itemBuilder: (context, index) {
                     return Chat(
                       // messag: messagess[index],
@@ -48,7 +46,6 @@ class ChatPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextField(
-              controller: control,
               onSubmitted: (data) {
                 BlocProvider.of<ChatCubit>(context).sendMessage(message: data);
                 control.clear();
