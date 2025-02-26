@@ -76,14 +76,11 @@ class RegisterPage extends StatelessWidget {
                     ),
                     CustomButton(
                       ontap: () async {
-                        if (fromkey.currentState!.validate()) {
-                          BlocProvider.of<RegisterCubit>(context)
-                              .RegisterUser(email: email!, password: password!);
-                        }
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return ChatPage();
-                        // }));
+                        // if (fromkey.currentState!.validate()) {
+                        //   BlocProvider.of<RegisterCubit>(context)
+                        //       .RegisterUser(email: email!, password: password!);
+                        // }
+                      
                       },
                     ),
                     const SizedBox(
