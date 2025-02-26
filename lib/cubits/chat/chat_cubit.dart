@@ -13,7 +13,7 @@ class ChatCubit extends Cubit<ChatState> {
   void addMessage({required String message, required String email}) {
     try {
       messags
-          .add({'message': message, 'CreateAt': DateTime.now(), 'id': email});
+          .add({'message': message, 'CreateAt': DateTime.now(), 'inn': email});
     } catch (e) {
       emit(SendFailed(errMessage: 'there is problem in show messages'));
     }

@@ -1,9 +1,9 @@
 class Messages {
   final String Message;
-  final String id;
-  Messages(this.Message,this.id);
+  final String inn;
+  Messages(this.Message,this.inn);
   factory Messages.fromJson(json) {
-    return Messages(json['message'],json['id']);
+    return Messages(json['message'],json['inn']);
   }
 }
 
