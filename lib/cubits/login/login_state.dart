@@ -4,5 +4,8 @@ part of 'login_cubit.dart';
 abstract class LoginState {}
 
 class LoginInitial extends LoginState {}
+class LoginLoad extends LoginState {}
+class LoginSucess extends LoginState {}
+class LoginFail extends LoginState {}
 
 
