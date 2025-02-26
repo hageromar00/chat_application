@@ -24,6 +24,7 @@ class LoginPage extends StatelessWidget {
           isLoad = true;
         } else if (state is LoginSucess) {
           isLoad = false;
+          BlocProvider.of<ChatCubit>(context).getMessage();
           Navigator.pushNamed(context, ChatPage.id);
         } else {
           isLoad = false;
@@ -64,7 +65,7 @@ class LoginPage extends StatelessWidget {
                       height: 40,
                     ),
                     const Text(
-                      'REGISTER',
+                      'LOGIN',
                       style: TextStyle(
                         fontSize: 25,
                         color: Colors.white,

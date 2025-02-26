@@ -3,8 +3,8 @@ import 'package:chat_application/model/message_model.dart';
 import 'package:flutter/material.dart';
 
 class Chat extends StatelessWidget {
-  const Chat({super.key});
-  // final Messages messag;
+  const Chat({super.key,required this.messag});
+  final Messages messag;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -20,8 +20,8 @@ class Chat extends StatelessWidget {
               bottomRight: Radius.circular(17)),
           color: kColor,
         ),
-        child:  Text('hager',
-          // messag.Message,
+        child:  Text(
+          messag.Message,
           style:const TextStyle(color: Colors.white),
         ),
       ),

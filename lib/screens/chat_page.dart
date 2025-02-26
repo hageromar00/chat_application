@@ -33,27 +33,29 @@ class ChatPage extends StatelessWidget {
         children: [
           Expanded(child: BlocBuilder<ChatCubit, ChatState>(
             builder: (context, state) {
-            
+              var message = BlocProvider.of<ChatCubit>(context).mess;
               return ListView.builder(
-                  itemCount: 3,
+                reverse: true,
+                  itemCount: message.length,
                   itemBuilder: (context, index) {
                     return Chat(
-                      // messag: messagess[index],
-                    );
+                        messag: message[index],
+                        );
                   });
-            },
+            },//hageromar3@gmail.com
           )),
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextField(
+              controller: control,
               onSubmitted: (data) {
-                BlocProvider.of<ChatCubit>(context).sendMessage(message: data);
+                BlocProvider.of<ChatCubit>(context).addMessage(message: data);
                 control.clear();
-                _scrollController.animateTo(
-                  0,
-                  duration: Duration(milliseconds: 2),
-                  curve: Curves.easeOut,
-                );
+                // _scrollController.animateTo(
+                //   0,
+                //   duration: Duration(milliseconds: 2),
+                //   curve: Curves.easeOut,
+                // );
               },
               decoration: InputDecoration(
                   border: OutlineInputBorder(

@@ -1,4 +1,5 @@
 import 'package:chat_application/const.dart';
+import 'package:chat_application/cubits/chat/chat_cubit.dart';
 import 'package:chat_application/cubits/register/register_cubit.dart';
 import 'package:chat_application/screens/chat_page.dart';
 import 'package:chat_application/widget/custom_button.dart';
@@ -21,6 +22,7 @@ class RegisterPage extends StatelessWidget {
         if (state is RegisterLoad) {
           isLoad = true;
         } else if (state is RegisterSuccess) {
+          BlocProvider.of<ChatCubit>(context).getMessage();
           Navigator.pushNamed(context, ChatPage.id);
           isLoad = false;
         } else {
@@ -62,7 +64,7 @@ class RegisterPage extends StatelessWidget {
                       height: 40,
                     ),
                     const Text(
-                      'LOGIN',
+                      'REGISTER',
                       style: TextStyle(
                         fontSize: 25,
                         color: Colors.white,
