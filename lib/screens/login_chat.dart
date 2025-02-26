@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
         } else if (state is LoginSucess) {
           isLoad = false;
           BlocProvider.of<ChatCubit>(context).getMessage();
-          Navigator.pushNamed(context, ChatPage.id);
+          Navigator.pushNamed(context, ChatPage.id, arguments: email);
         } else {
           isLoad = false;
         }

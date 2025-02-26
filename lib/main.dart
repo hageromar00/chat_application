@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => ChatCubit()),
-        // BlocProvider(create: (context) => AuthBloc()),
+        BlocProvider(create: (context) => AuthBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

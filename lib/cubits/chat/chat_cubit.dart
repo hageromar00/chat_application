@@ -10,9 +10,10 @@ class ChatCubit extends Cubit<ChatState> {
   CollectionReference messags =
       FirebaseFirestore.instance.collection('message');
   List<Messages> mess = [];
-  void addMessage({required String message}) {
+  void addMessage({required String message, required String email}) {
     try {
-      messags.add({'message': message, 'CreateAt': DateTime.now()});
+      messags
+          .add({'message': message, 'CreateAt': DateTime.now(), 'id': email});
     } catch (e) {
       emit(SendFailed(errMessage: 'there is problem in show messages'));
     }
@@ -24,33 +25,9 @@ class ChatCubit extends Cubit<ChatState> {
       for (var doc in event.docs) {
         mess.add(Messages.fromJson(doc));
       }
+
       emit(ChatSuccess(messag: mess));
     });
   }
 
-//  CollectionReference messages =
-//       FirebaseFirestore.instance.collection('message');
-//   List<Messages> messa = [];
-//   void sendMessage({required String message}) {
-//     try {
-//       messages
-//           .add({'message': message, 'CreateAt': DateTime.now()});
-//     } on Exception catch (e) {
-//       emit(SendFailed(errMessage: 'there is problem in show messages'));
-//     }
-//   }
-
-//   void getMessage() {
-//     messages.orderBy('CreateAt', descending: true).snapshots().listen((event) {
-//       messa.clear();
-//       for (var doc in event.docs) {
-//         messa.add(Messages.fromJson(doc));
-//       }
-
-//       // for (var i = 0; i < event.docs.length; i++) {
-//       //   mess.add(Messages.fromJson(docs[i]));
-//       // }
-//       emit(ChatSuccess(messag: messa));
-//     });
-//   }
 }

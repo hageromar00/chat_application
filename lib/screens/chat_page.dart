@@ -12,6 +12,7 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String email = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -35,21 +36,26 @@ class ChatPage extends StatelessWidget {
             builder: (context, state) {
               var message = BlocProvider.of<ChatCubit>(context).mess;
               return ListView.builder(
-                reverse: true,
+                  controller: _scrollController,
+                  reverse: true,
                   itemCount: message.length,
                   itemBuilder: (context, index) {
-                    return Chat(
-                        messag: message[index],
-                        );
+                    return message[index].id == email
+                        ? Chat(messag: message[index])
+                        : ChatFriend(mes: message[index]);
+                    //  Chat(
+                    //   messag: message[index],
+                    // );
                   });
-            },//hageromar3@gmail.com
+            }, //hageromar3@gmail.com
           )),
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextField(
               controller: control,
               onSubmitted: (data) {
-                BlocProvider.of<ChatCubit>(context).addMessage(message: data);
+                BlocProvider.of<ChatCubit>(context)
+                    .addMessage(message: data, email: email);
                 control.clear();
                 // _scrollController.animateTo(
                 //   0,
