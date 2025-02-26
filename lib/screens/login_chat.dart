@@ -18,7 +18,18 @@ class LoginPage extends StatelessWidget {
   bool isLoad = false;
   @override
   Widget build(BuildContext context) {
-    
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is LoginLoad) {
+          isLoad = true;
+        } else if (state is LoginSucess) {
+          isLoad = false;
+          Navigator.pushNamed(context, ChatPage.id);
+        } else {
+          isLoad = false;
+        }
+      },
+      builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: isLoad,
           child: Form(
@@ -53,7 +64,7 @@ class LoginPage extends StatelessWidget {
                       height: 40,
                     ),
                     const Text(
-                      'LOGIN',
+                      'REGISTER',
                       style: TextStyle(
                         fontSize: 25,
                         color: Colors.white,
@@ -78,8 +89,9 @@ class LoginPage extends StatelessWidget {
                       height: 15,
                     ),
                     CustomButton(
-                      ontap: () async{
-                     
+                      ontap: () async {
+                        BlocProvider.of<LoginCubit>(context)
+                            .LoginUser(email: email!, password: password!);
                       },
                     ),
                     const SizedBox(
@@ -114,6 +126,7 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         );
-      }
-    
+      },
+    );
   }
+}
